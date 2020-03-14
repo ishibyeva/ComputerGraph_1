@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ComputerGraph_1
+
 {
     public partial class Form1 : Form
     {
