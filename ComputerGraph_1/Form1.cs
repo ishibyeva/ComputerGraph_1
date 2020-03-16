@@ -206,5 +206,24 @@ namespace ComputerGraph_1
             Filters f6 = new Grad();
             backgroundWorker1.RunWorkerAsync(f6);
         }
+
+        private void topHatToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Filters f6 = new TopHat();
+            backgroundWorker1.RunWorkerAsync(f6);
+        }
+
+        private void переводВБинарноеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Filters f6 = new ToBin();
+            backgroundWorker1.RunWorkerAsync(f6);
+
+        }
+
+        private void blackHatToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Filters f6 = new BlackHat();
+            backgroundWorker1.RunWorkerAsync(f6);
+        }
     }
 }

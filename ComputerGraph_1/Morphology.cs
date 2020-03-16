@@ -103,7 +103,7 @@ namespace ComputerGraph_1
     }
     class Opening : Morphology // Морфологическое открытие
     {
-
+        
         protected override Color calculateNewPixelColor(Bitmap sourceImage, int W, int H)
         {
             return sourceImage.GetPixel(W, H);
@@ -128,7 +128,7 @@ namespace ComputerGraph_1
         }
         public override Bitmap processImage(Bitmap sourceImage, BackgroundWorker worker)
         {
-            //сначала сужение, потом расширение
+            //сначала расширение, потом сужение
             Bitmap resultImage = new Bitmap(sourceImage.Width, sourceImage.Height);
             Filters Err = new Erosion(st_elem);
             Filters Dila = new Dilation(st_elem);
@@ -167,6 +167,75 @@ namespace ComputerGraph_1
                     int newG = Clamp(resultD.GetPixel(i, j).G - resultE.GetPixel(i, j).G, 0, 255);
                     int newB = Clamp(resultD.GetPixel(i, j).B - resultE.GetPixel(i, j).B, 0, 255);
                     resultImage.SetPixel(i, j, Color.FromArgb(newR,newG,newB));
+                }
+            }
+            return resultImage;
+
+        }
+    }
+
+    class TopHat : Morphology
+    {
+
+        protected override Color calculateNewPixelColor(Bitmap sourceImage, int W, int H)
+        {
+            return sourceImage.GetPixel(W, H);
+        }
+        public override Bitmap processImage(Bitmap sourceImage, BackgroundWorker worker)
+        {
+            Bitmap resultImage = new Bitmap(sourceImage.Width, sourceImage.Height);
+            Filters Clos = new Closing();
+            Bitmap resultcL = Clos.processImage(sourceImage, worker);
+
+            
+            for (int i = 0; i < sourceImage.Width; i++)
+            {
+                worker.ReportProgress((int)((float)i / resultImage.Width * 100));
+                //прерывание процесса 
+                if (worker.CancellationPending)
+                    return null;
+                for (int j = 0; j < sourceImage.Height; j++)
+                {
+                    
+                    int newR = Clamp(sourceImage.GetPixel(i, j).R - resultcL.GetPixel(i, j).R, 0, 255);
+                    int newG = Clamp(sourceImage.GetPixel(i, j).G - resultcL.GetPixel(i, j).G, 0, 255);
+                    int newB = Clamp(sourceImage.GetPixel(i, j).B - resultcL.GetPixel(i, j).B, 0, 255);
+                    resultImage.SetPixel(i, j, Color.FromArgb(newR, newG, newB));
+                }
+            }
+            return resultImage;
+
+        }
+    }
+
+    class BlackHat : Morphology
+    {
+
+
+        protected override Color calculateNewPixelColor(Bitmap sourceImage, int W, int H)
+        {
+            return sourceImage.GetPixel(W, H);
+        }
+        public override Bitmap processImage(Bitmap sourceImage, BackgroundWorker worker)
+        {
+            Bitmap resultImage = new Bitmap(sourceImage.Width, sourceImage.Height);
+            Filters Op = new Opening();
+            Bitmap result =  Op.processImage(sourceImage, worker);
+
+
+            for (int i = 0; i < sourceImage.Width; i++)
+            {
+                worker.ReportProgress((int)((float)i / resultImage.Width * 100));
+                //прерывание процесса 
+                if (worker.CancellationPending)
+                    return null;
+                for (int j = 0; j < sourceImage.Height; j++)
+                {
+                    
+                    int newR = Clamp(result.GetPixel(i, j).R - sourceImage.GetPixel(i, j).R, 0, 255);
+                    int newG = Clamp(result.GetPixel(i, j).G - sourceImage.GetPixel(i, j).G, 0, 255);
+                    int newB = Clamp(result.GetPixel(i, j).B - sourceImage.GetPixel(i, j).B, 0, 255);
+                    resultImage.SetPixel(i, j, Color.FromArgb(newR, newG, newB));
                 }
             }
             return resultImage;

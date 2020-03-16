@@ -246,8 +246,16 @@ namespace ComputerGraph_1
         protected override Color calculateNewPixelColor(Bitmap Source, int W, int H)
         {
             Color sourceColor = Source.GetPixel(W, H);
-            int nX = Clamp((int)(W+x0),0, Source.Width-1);
-            int nY = Clamp((int)(H + y0), 0, Source.Height-1);
+            int nX = (int)(W+x0);
+
+            int nY =(int)(H + y0);
+            if ((nY < 0 || nY > Source.Height-1) || (nX < 0 || nX > Source.Width-1))
+            {
+                return Color.Black;
+            }
+            nX = Clamp(nX, 0, Source.Width - 1);
+            nY = Clamp(nY, 0, Source.Height - 1);
+
             return Source.GetPixel(nX,nY);
 
         }
@@ -264,8 +272,16 @@ namespace ComputerGraph_1
         {
             Color sourceColor = Source.GetPixel(W, H);
             double si = Math.Sin(my), co = Math.Cos(my);
-            int nX = Clamp((int)((W - x0)*co-(H-y0)*si+x0), 0, Source.Width-1);
-            int nY = Clamp((int)((W - x0) * si + (H - y0) * co + y0), 0, Source.Height-1);
+            int nX = (int)((W - x0) * co - (H - y0) * si + x0);
+            int nY = (int)((W - x0) * si + (H - y0) * co + y0);
+            if ((nY < 0 || nY > Source.Height - 1) || (nX < 0 || nX > Source.Width - 1))
+            {
+                return Color.Black;
+            }
+            nX = Clamp(nX, 0, Source.Width - 1);
+            nY = Clamp(nY, 0, Source.Height - 1);
+            nX = Clamp((int)((W - x0)*co-(H-y0)*si+x0), 0, Source.Width-1);
+            nY = Clamp((int)((W - x0) * si + (H - y0) * co + y0), 0, Source.Height-1);
             return Source.GetPixel(nX, nY);
 
         }
@@ -284,7 +300,20 @@ namespace ComputerGraph_1
 
         }
     };
-    //класс морфологии
+    //в бинарное изображение
+    class ToBin : Filters
+    {
+        protected override Color calculateNewPixelColor(Bitmap Source, int W, int H)
+        {
+            Color sourceColor = Source.GetPixel(W, H);
+            if (sourceColor.R< 127 && sourceColor.G< 127 && sourceColor.R< 127)
+
+                return Color.Black;
+            else return Color.White;
+            
+
+        }
+    };
    
     
     

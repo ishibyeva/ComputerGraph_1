@@ -43,10 +43,6 @@
             this.размытиеПоГауссуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.фильтрСобеляToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.резкостьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.button1 = new System.Windows.Forms.Button();
             this.матМорфологияToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.расширениеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.сужениеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -56,6 +52,13 @@
             this.перемещениеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.поворотToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.волныToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.button1 = new System.Windows.Forms.Button();
+            this.topHatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.blackHatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.переводВБинарноеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -102,7 +105,8 @@
             this.матМорфологияToolStripMenuItem,
             this.перемещениеToolStripMenuItem,
             this.поворотToolStripMenuItem,
-            this.волныToolStripMenuItem});
+            this.волныToolStripMenuItem,
+            this.переводВБинарноеToolStripMenuItem});
             this.фильтрыToolStripMenuItem.Name = "фильтрыToolStripMenuItem";
             this.фильтрыToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
             this.фильтрыToolStripMenuItem.Text = "Фильтры";
@@ -185,45 +189,6 @@
             this.резкостьToolStripMenuItem.Text = "Резкость";
             this.резкостьToolStripMenuItem.Click += new System.EventHandler(this.резкостьToolStripMenuItem_Click);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox1.Location = new System.Drawing.Point(13, 28);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(775, 344);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
-            // 
-            // backgroundWorker1
-            // 
-            this.backgroundWorker1.WorkerReportsProgress = true;
-            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
-            this.backgroundWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker1_ProgressChanged);
-            this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
-            // 
-            // progressBar1
-            // 
-            this.progressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.progressBar1.Location = new System.Drawing.Point(13, 388);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(656, 36);
-            this.progressBar1.TabIndex = 2;
-            // 
-            // button1
-            // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(676, 388);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(112, 36);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Отмена";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // матМорфологияToolStripMenuItem
             // 
             this.матМорфологияToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -231,9 +196,11 @@
             this.сужениеToolStripMenuItem,
             this.открытиеToolStripMenuItem,
             this.закрытиеToolStripMenuItem,
-            this.градиентToolStripMenuItem});
+            this.градиентToolStripMenuItem,
+            this.topHatToolStripMenuItem,
+            this.blackHatToolStripMenuItem});
             this.матМорфологияToolStripMenuItem.Name = "матМорфологияToolStripMenuItem";
-            this.матМорфологияToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.матМорфологияToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.матМорфологияToolStripMenuItem.Text = "Мат морфология";
             // 
             // расширениеToolStripMenuItem
@@ -292,6 +259,66 @@
             this.волныToolStripMenuItem.Text = "Волны";
             this.волныToolStripMenuItem.Click += new System.EventHandler(this.волныToolStripMenuItem_Click);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox1.Location = new System.Drawing.Point(13, 28);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(775, 344);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
+            // 
+            // backgroundWorker1
+            // 
+            this.backgroundWorker1.WorkerReportsProgress = true;
+            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
+            this.backgroundWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker1_ProgressChanged);
+            this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.progressBar1.Location = new System.Drawing.Point(13, 388);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(656, 36);
+            this.progressBar1.TabIndex = 2;
+            // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.Location = new System.Drawing.Point(676, 388);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(112, 36);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "Отмена";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // topHatToolStripMenuItem
+            // 
+            this.topHatToolStripMenuItem.Name = "topHatToolStripMenuItem";
+            this.topHatToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.topHatToolStripMenuItem.Text = "Top Hat";
+            this.topHatToolStripMenuItem.Click += new System.EventHandler(this.topHatToolStripMenuItem_Click);
+            // 
+            // blackHatToolStripMenuItem
+            // 
+            this.blackHatToolStripMenuItem.Name = "blackHatToolStripMenuItem";
+            this.blackHatToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.blackHatToolStripMenuItem.Text = "Black Hat";
+            this.blackHatToolStripMenuItem.Click += new System.EventHandler(this.blackHatToolStripMenuItem_Click);
+            // 
+            // переводВБинарноеToolStripMenuItem
+            // 
+            this.переводВБинарноеToolStripMenuItem.Name = "переводВБинарноеToolStripMenuItem";
+            this.переводВБинарноеToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.переводВБинарноеToolStripMenuItem.Text = "Перевод в бинарное ";
+            this.переводВБинарноеToolStripMenuItem.Click += new System.EventHandler(this.переводВБинарноеToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -342,6 +369,9 @@
         private System.Windows.Forms.ToolStripMenuItem перемещениеToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem поворотToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem волныToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem topHatToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem blackHatToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem переводВБинарноеToolStripMenuItem;
     }
 }
 
